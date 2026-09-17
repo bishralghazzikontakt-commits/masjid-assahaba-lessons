@@ -8,6 +8,64 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* --- 1. تأثير ظهور العناصر عند فتح الصفحة --- */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* تطبيق الحركة على أقسام الموقع */
+header, .tabs, .course-panel, footer {
+  opacity: 0;
+  animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+header { animation-delay: 0.1s; }
+.tabs { animation-delay: 0.25s; }
+.course-panel { animation-delay: 0.4s; }
+footer { animation-delay: 0.55s; }
+
+/* --- 2. تنسيق زر الرجوع للأعلى (متناسق مع ألوان الموقع) --- */
+.back-to-top {
+  position: fixed;
+  left: 16px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 100;
+  padding: 8px 14px;
+  border: 1px solid #f3dc95;
+  border-radius: 25px;
+  background: #11272d;
+  color: #fff0b7;
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: #17353d;
+  border-color: #fff0b7;
+}
     :root{--navy:#031b23;--navy-2:#062a35;--navy-3:#103741;--green:#064d40;--green-2:#08614e;--gold:#f4df9d;--gold-2:#d3ad57;--paper:#fffaf0;--line:rgba(244,223,157,.31);--text:#fffdf7;--muted:#c7d0cf}
     *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--navy);color:var(--text);font-family:'Noto Naskh Arabic',serif;min-height:100vh;background-image:radial-gradient(circle at 10% 5%,rgba(211,173,87,.16),transparent 26%),radial-gradient(circle at 90% 75%,rgba(0,118,92,.22),transparent 30%)}
     .page{width:min(100%,620px);min-height:100vh;margin:auto;padding:34px 24px 28px;background:linear-gradient(155deg,rgba(12,41,48,.97),rgba(2,28,34,.98));box-shadow:0 0 70px rgba(0,0,0,.35);overflow:hidden;position:relative}.page:before{content:"";position:absolute;inset:-130px auto auto -145px;width:340px;height:340px;border:1px solid rgba(244,223,157,.16);border-radius:50%;pointer-events:none}.page:after{content:"";position:absolute;inset:270px -160px auto auto;width:320px;height:320px;border:1px solid rgba(244,223,157,.11);border-radius:50%;pointer-events:none}
@@ -104,5 +162,26 @@ const fiqhPdfUrl = 'الأظهر في الفقه .pdf';    const currentVolume
       if (fiqhTab) fiqhTab.click();
     }
   </script>
+  <!-- زر الرجوع للأعلى -->
+<button id="backToTop" class="back-to-top" aria-label="الرجوع للأعلى">
+  ▲ للأعلى
+</button>
+
+<!-- تشغيل زر الرجوع للأعلى -->
+<script>
+const backToTopBtn = document.getElementById('backToTop');
+
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 250) {
+    backToTopBtn.classList.add('show');
+  } else {
+    backToTopBtn.classList.remove('show');
+  }
+});
+
+backToTopBtn.onclick = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+</script>
 </body>
 </html>
