@@ -71,12 +71,12 @@ footer { animation-delay: 0.55s; }
 .page{width:min(100%,620px);min-height:100vh;margin:auto;padding:34px 24px 28px;background:linear-gradient(155deg,rgba(12,41,48,.97),rgba(2,28,34,.98));box-shadow:0 0 70px rgba(0,0,0,.35);overflow:hidden;position:relative}.page:before{content:"";position:absolute;inset:-130px auto auto -145px;width:340px;height:340px;border:1px solid rgba(244,223,157,.16);border-radius:50%;pointer-events:none}.page:after{content:"";position:absolute;inset:270px -160px auto auto;width:320px;height:320px;border:1px solid rgba(244,223,157,.11);border-radius:50%;pointer-events:none}
 .top,.tabs,.course,.footer{position:relative;z-index:1}.top{text-align:center;padding:4px 8px 31px}
 .logo {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 2px !important; /* تقليل الفراغ بين الشعار والكلمة */
-  color: var(--gold) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  color: var(--gold);
   font-family: 'Noto Naskh Arabic', serif;
   letter-spacing: 1.5px;
   font-size: 20px;
@@ -85,12 +85,12 @@ footer { animation-delay: 0.55s; }
 }
 
 .logo-image {
-  width: 100px !important;
-  height: auto !important;
+  width: 100px;
+  height: auto;
   object-fit: contain;
   display: block;
-  margin: 0 auto -10
-    px auto !important; /* هامش سلبي لسحب النص للأعلى وتقريب الشعار */
+  margin: 0 auto -42px auto;
+}
 }
 }
 .top h1{font-family:'Noto Naskh Arabic',serif;font-size:42px;font-weight:600;line-height:1.12;margin:33px 0 5px}.top p{margin:0;color:var(--muted);font-size:19px}.ornament{width:100px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-2),transparent);margin:27px auto 0}
