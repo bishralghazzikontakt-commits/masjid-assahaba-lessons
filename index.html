@@ -112,6 +112,20 @@ footer { animation-delay: 0.55s; }
   <h1>مكتبة الدروس الأسبوعية</h1>
   <p>الكتب المقررة والموضع الحالي لكل درس</p>
   <div class="ornament"></div>
+   <!-- زر مشاركة الموقع أسفل الشرطة الذهبية -->
+  <div class="share-site-container">
+    <button class="share-site-btn" onclick="shareWebsite()">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="18" cy="5" r="3"></circle>
+        <circle cx="6" cy="12" r="3"></circle>
+        <circle cx="18" cy="19" r="3"></circle>
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+      </svg>
+      مشاركة رابط المكتبة
+    </button>
+  </div>
+</header>
 </header>
 
     <nav class="tabs" aria-label="اختيار الدرس">
@@ -139,7 +153,50 @@ footer { animation-delay: 0.55s; }
       <section class="current"><div class="bookmark"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1Z"></path></svg></div><div><div class="label">الموضع الحالي في الدرس</div><h3>كتاب الحدود</h3><p>الصفحة 455</p></div></section>
       <section class="fiqh-download"><h3>منظومة الأظهر في الفقه</h3><!-- ضع رابط ملف الأظهر في الفقه مكان # في السطر التالي --><a id="fiqh-link" class="pdf" href="#" target="_blank" rel="noopener">تحميل الكتاب  (PDF)</a></section>
     </section>
+/* زر مشاركة الموقع الداكن والذهبي */
+.share-site-container {
+  margin: 20px 0;
+  text-align: center;
+}
 
+.share-site-btn {
+  width: 100%;
+  min-height: 50px;
+  padding: 12px 20px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--gold);
+  font-family: 'Noto Naskh Arabic', serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.25s ease;
+}
+
+.share-site-btn:hover {
+  background: rgba(244, 223, 157, 0.12);
+  border-color: var(--gold);
+  transform: translateY(-2px);
+}
+
+.share-site-btn:active {
+  transform: scale(0.98);
+}
+
+.share-site-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
     <footer class="footer">مسجد الصحابة · هامبورغ<span>Fuhlsbüttler Str. 230 · 22307 Hamburg</span></footer>
   </main>
 
@@ -207,6 +264,20 @@ window.addEventListener('scroll', () => {
 backToTopBtn.onclick = () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 };
+</script>
+  <script>
+function shareWebsite() {
+  if (navigator.share) {
+    navigator.share({
+      title: 'مكتبة الدروس الأسبوعية | مسجد الصحابة',
+      text: 'تابع الموضع الحالي ودروس سنن الترمذي والأظهر في الفقه في مسجد الصحابة:',
+      url: window.location.href
+    }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(window.location.href);
+    alert('تم نسخ رابط الموقع بنجاح!');
+  }
+}
 </script>
 </body>
 </html>
